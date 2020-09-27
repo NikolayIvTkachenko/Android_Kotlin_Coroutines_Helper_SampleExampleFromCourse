@@ -1,0 +1,46 @@
+package com.rsh_engineering.tkachenkoni.coroutinesretrofit.View
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.rsh_engineering.tkachenkoni.coroutinesretrofit.Model.Country
+import com.rsh_engineering.tkachenkoni.coroutinesretrofit.R
+import kotlinx.android.synthetic.main.item_country.view.*
+
+/**
+ *
+ * Created by Nikolay Tkachenko on 27, September, 2020
+ *
+ */
+class CountryListAdapter (var countries: ArrayList<Country>): RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
+
+    fun updateCountries(newCountries: List<Country>) {
+        countries.clear()
+        countries.addAll(newCountries)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = CountryViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.item_country, parent, false)
+    )
+
+    override fun getItemCount() = countries.size
+
+    override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
+        holder.bind(countries[position])
+    }
+
+    class CountryViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
+        private val imageView = view.imageView
+        private val countryName = view.name
+        private val countryCapital = view.capital
+
+        fun bind(country: Country) {
+            countryName.text = country.countryName
+            countryCapital.text = country.capital
+            imageView.loadImage(country.flag)
+        }
+    }
+}
