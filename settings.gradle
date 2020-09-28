@@ -1,0 +1,6 @@
+include ':coroutinesflow'
+include ':coroutinesroomdb'
+include ':coroutinesretrofit'
+include ':imagedownloadurl'
+include ':app'
+rootProject.name = "CoroutinesHelperAndroid"
